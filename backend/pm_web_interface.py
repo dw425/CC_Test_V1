@@ -1,17 +1,17 @@
 """
-HTML File Ingestion Interface for PM Intelligence System
+HTML File Ingestion Interface for PM Intelligence System - FIXED VERSION
 
 This module provides a web-based interface for file upload and processing
 that integrates with the CC_file1.py ingestion engine.
 
-Creates a simple HTML interface where PMs can:
-1. Upload multiple files (drag & drop or browse)
-2. Click "Run" to process all files
-3. View processing results
-4. Access processed data for next validation steps
+Fixed Issues:
+- File input visibility
+- JavaScript event handlers
+- File display functionality
+- Run button enablement
 
 Author: PM Intelligence Team
-Version: 1.0.0
+Version: 1.1.0 (Fixed)
 """
 
 import os
@@ -23,19 +23,18 @@ from typing import List, Dict, Any
 from fastapi import FastAPI, File, UploadFile, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 import uvicorn
 
 # Import your file ingestion engine
-try: 
-    import sys
-    import os
-    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    from CC_file1 import FileIngestionEngine, ProcessingResult
+try:
+    from .CC_file1 import FileIngestionEngine, ProcessingResult
 except ImportError:
-    print("Error: Could not import CC_file1.py")
-    print("Make sure CC_file1.py is in the same directory as this file")
-    exit(1)
+    try:
+        from CC_file1 import FileIngestionEngine, ProcessingResult
+    except ImportError:
+        print("Error: Could not import CC_file1.py")
+        print("Make sure CC_file1.py is in the same directory as this file")
+        exit(1)
 
 
 class FileStorageManager:
@@ -258,22 +257,19 @@ class FileStorageManager:
 
 
 # Initialize FastAPI application
-app = FastAPI(title="PM File Ingestion Interface", version="1.0.0")
+app = FastAPI(title="PM File Ingestion Interface", version="1.1.0")
 
 # Initialize storage manager
 storage_manager = FileStorageManager()
-
-# Static files and templates (we'll create templates inline for simplicity)
-# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def main_interface():
     """
-    Serve the main file upload interface.
+    Serve the main file upload interface with FIXED JavaScript.
     
     Returns:
-        HTML page with file upload and processing interface
+        HTML page with working file upload and processing interface
     """
     html_content = """
     <!DOCTYPE html>
@@ -350,7 +346,18 @@ async def main_interface():
             }
             
             .file-input {
-                display: none;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: relative !important;
+                width: auto !important;
+                height: auto !important;
+                background: white !important;
+                border: 2px solid #007bff !important;
+                padding: 10px !important;
+                border-radius: 5px !important;
+                margin: 15px auto !important;
+                max-width: 400px !important;
             }
             
             .file-input-label {
@@ -378,8 +385,8 @@ async def main_interface():
             
             .file-item {
                 background: white;
-                padding: 10px 15px;
-                margin: 5px 0;
+                padding: 15px;
+                margin: 10px 0;
                 border-radius: 8px;
                 border: 1px solid #dee2e6;
                 display: flex;
@@ -403,28 +410,28 @@ async def main_interface():
             }
             
             .run-button {
-                background: linear-gradient(135deg, #28a745, #20c997);
+                background: #6c757d;
                 color: white;
                 border: none;
                 padding: 15px 40px;
                 font-size: 1.2em;
                 font-weight: 600;
                 border-radius: 10px;
-                cursor: pointer;
+                cursor: not-allowed;
                 transition: all 0.3s ease;
                 margin: 0 10px;
+                opacity: 0.6;
             }
             
-            .run-button:hover {
+            .run-button:not(:disabled) {
+                background: linear-gradient(135deg, #28a745, #20c997);
+                cursor: pointer;
+                opacity: 1;
+            }
+            
+            .run-button:not(:disabled):hover {
                 transform: translateY(-3px);
                 box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
-            }
-            
-            .run-button:disabled {
-                background: #6c757d;
-                cursor: not-allowed;
-                transform: none;
-                box-shadow: none;
             }
             
             .clear-button {
@@ -551,6 +558,15 @@ async def main_interface():
                 transform: translateY(-2px);
                 box-shadow: 0 8px 16px rgba(111, 66, 193, 0.3);
             }
+
+            .file-display {
+                margin: 15px 0;
+                padding: 15px;
+                background: #e7f3ff;
+                border: 1px solid #007bff;
+                border-radius: 5px;
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -565,19 +581,16 @@ async def main_interface():
                 <div class="upload-area">
                     <div class="upload-icon">📁</div>
                     <h3>Upload Project Files</h3>
-                    <p>Drag & drop files here or click to browse</p>
+                    <p>Choose files to upload</p>
                     <p style="color: #666; margin-top: 10px;">
                         Supported: Excel (.xlsx, .xls), CSV, JSON (JIRA), PowerPoint (.pptx, .ppt)
                     </p>
                     
                     <input type="file" id="fileInput" class="file-input" multiple 
                            accept=".xlsx,.xls,.csv,.json,.pptx,.ppt">
-                    <label for="fileInput" class="file-input-label">
-                        Choose Files
-                    </label>
                 </div>
                 
-                <div id="selectedFiles" class="selected-files"></div>
+                <div id="fileDisplay" class="file-display"></div>
             </div>
             
             <div class="control-section">
@@ -613,61 +626,89 @@ async def main_interface():
         </div>
         
         <script>
+            // Global variables
             let selectedFiles = [];
             
-            // File input handling
-            document.getElementById('fileInput').addEventListener('change', handleFileSelect);
-            
-            // Drag and drop handling
-            const uploadSection = document.getElementById('uploadSection');
-            
-            uploadSection.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadSection.classList.add('dragover');
+            // Initialize when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeFileUpload();
             });
             
-            uploadSection.addEventListener('dragleave', (e) => {
-                e.preventDefault();
-                uploadSection.classList.remove('dragover');
-            });
-            
-            uploadSection.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadSection.classList.remove('dragover');
-                handleFileSelect({target: {files: e.dataTransfer.files}});
-            });
+            function initializeFileUpload() {
+                const fileInput = document.getElementById('fileInput');
+                const uploadSection = document.getElementById('uploadSection');
+                
+                // File input change handler
+                fileInput.addEventListener('change', handleFileSelect);
+                
+                // Drag and drop handlers
+                uploadSection.addEventListener('dragover', handleDragOver);
+                uploadSection.addEventListener('dragleave', handleDragLeave);
+                uploadSection.addEventListener('drop', handleDrop);
+                
+                console.log('✅ File upload system initialized');
+            }
             
             function handleFileSelect(event) {
                 const files = Array.from(event.target.files);
-                selectedFiles = [...selectedFiles, ...files];
+                selectedFiles = files;
+                updateFileDisplay();
+                updateRunButton();
+                console.log('Files selected:', files.map(f => f.name));
+            }
+            
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.currentTarget.classList.add('dragover');
+            }
+            
+            function handleDragLeave(e) {
+                e.preventDefault();
+                e.currentTarget.classList.remove('dragover');
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                e.currentTarget.classList.remove('dragover');
+                
+                const files = Array.from(e.dataTransfer.files);
+                selectedFiles = files;
+                
+                // Update the file input to show the dropped files
+                const fileInput = document.getElementById('fileInput');
+                fileInput.files = e.dataTransfer.files;
+                
                 updateFileDisplay();
                 updateRunButton();
             }
             
             function updateFileDisplay() {
-                const container = document.getElementById('selectedFiles');
-                container.innerHTML = '';
+                const display = document.getElementById('fileDisplay');
                 
-                selectedFiles.forEach((file, index) => {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'file-item';
-                    fileItem.innerHTML = `
-                        <div>
-                            <div class="file-name">${file.name}</div>
-                            <div class="file-size">${formatFileSize(file.size)}</div>
-                        </div>
-                        <button onclick="removeFile(${index})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-                            Remove
-                        </button>
+                if (selectedFiles.length > 0) {
+                    display.style.display = 'block';
+                    display.innerHTML = `
+                        <strong>Selected Files:</strong><br>
+                        ${selectedFiles.map(f => `📄 ${f.name} (${formatBytes(f.size)})`).join('<br>')}
                     `;
-                    container.appendChild(fileItem);
-                });
+                } else {
+                    display.style.display = 'none';
+                }
             }
             
-            function removeFile(index) {
-                selectedFiles.splice(index, 1);
-                updateFileDisplay();
-                updateRunButton();
+            function updateRunButton() {
+                const runButton = document.getElementById('runButton');
+                if (selectedFiles.length > 0) {
+                    runButton.disabled = false;
+                    runButton.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    runButton.style.cursor = 'pointer';
+                    runButton.style.opacity = '1';
+                } else {
+                    runButton.disabled = true;
+                    runButton.style.background = '#6c757d';
+                    runButton.style.cursor = 'not-allowed';
+                    runButton.style.opacity = '0.6';
+                }
             }
             
             function clearFiles() {
@@ -675,14 +716,15 @@ async def main_interface():
                 document.getElementById('fileInput').value = '';
                 updateFileDisplay();
                 updateRunButton();
+                
+                // Hide results if showing
+                const resultsSection = document.getElementById('resultsSection');
+                if (resultsSection) {
+                    resultsSection.style.display = 'none';
+                }
             }
             
-            function updateRunButton() {
-                const runButton = document.getElementById('runButton');
-                runButton.disabled = selectedFiles.length === 0;
-            }
-            
-            function formatFileSize(bytes) {
+            function formatBytes(bytes) {
                 if (bytes === 0) return '0 Bytes';
                 const k = 1024;
                 const sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -691,13 +733,20 @@ async def main_interface():
             }
             
             async function processFiles() {
-                if (selectedFiles.length === 0) return;
+                if (selectedFiles.length === 0) {
+                    alert('Please select files first');
+                    return;
+                }
+                
+                console.log('🚀 Processing files:', selectedFiles.map(f => f.name));
                 
                 // Show loading
-                document.getElementById('loadingSection').style.display = 'block';
-                document.getElementById('resultsSection').style.display = 'none';
+                const loadingSection = document.getElementById('loadingSection');
+                const resultsSection = document.getElementById('resultsSection');
+                loadingSection.style.display = 'block';
+                resultsSection.style.display = 'none';
                 
-                // Simulate progress
+                // Animate progress bar
                 const progressFill = document.getElementById('progressFill');
                 let progress = 0;
                 const progressInterval = setInterval(() => {
@@ -722,24 +771,29 @@ async def main_interface():
                         throw new Error('File upload failed');
                     }
                     
+                    const uploadResult = await uploadResponse.json();
+                    console.log('Upload result:', uploadResult);
+                    
                     // Process files
                     const processResponse = await fetch('/process-files', {
                         method: 'POST'
                     });
                     
-                    const results = await processResponse.json();
+                    const processResult = await processResponse.json();
+                    console.log('Process result:', processResult);
                     
                     // Complete progress
                     progressFill.style.width = '100%';
                     
                     // Show results
                     setTimeout(() => {
-                        document.getElementById('loadingSection').style.display = 'none';
-                        displayResults(results);
+                        loadingSection.style.display = 'none';
+                        displayResults(processResult);
                     }, 500);
                     
                 } catch (error) {
-                    document.getElementById('loadingSection').style.display = 'none';
+                    console.error('Processing failed:', error);
+                    loadingSection.style.display = 'none';
                     alert('Processing failed: ' + error.message);
                 }
             }
@@ -751,19 +805,19 @@ async def main_interface():
                 // Create summary cards
                 summaryContainer.innerHTML = `
                     <div class="metric-card">
-                        <div class="metric-number">${results.total_files}</div>
+                        <div class="metric-number">${results.total_files || 0}</div>
                         <div class="metric-label">Total Files</div>
                     </div>
                     <div class="metric-card success">
-                        <div class="metric-number">${results.successful_processes}</div>
+                        <div class="metric-number">${results.successful_processes || 0}</div>
                         <div class="metric-label">Successful</div>
                     </div>
                     <div class="metric-card error">
-                        <div class="metric-number">${results.failed_processes}</div>
+                        <div class="metric-number">${results.failed_processes || 0}</div>
                         <div class="metric-label">Failed</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-number">${results.success_rate}%</div>
+                        <div class="metric-number">${results.success_rate || 0}%</div>
                         <div class="metric-label">Success Rate</div>
                     </div>
                 `;
@@ -775,7 +829,7 @@ async def main_interface():
             }
             
             function proceedToValidation() {
-                alert('Proceeding to validation pipeline...\n\nThis would navigate to the next step where processed data is validated and analyzed.');
+                alert('Proceeding to validation pipeline...\\n\\nThis would navigate to the next step where processed data is validated and analyzed.');
                 // In production, this would navigate to the validation interface
                 window.location.href = '/validation';
             }
@@ -866,7 +920,7 @@ async def validation_interface():
     return HTMLResponse(content=html_content)
 
 
-def start_web_interface(host: str = "localhost", port: int = 8000):
+def start_web_interface(host: str = "0.0.0.0", port: int = 8000):
     """
     Start the web interface server.
     
@@ -883,4 +937,6 @@ def start_web_interface(host: str = "localhost", port: int = 8000):
 
 
 if __name__ == "__main__":
-    start_web_interface()
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    start_web_interface(host="0.0.0.0", port=port)
