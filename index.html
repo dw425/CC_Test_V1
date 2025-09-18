@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Intelligence Dashboard - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .github-link {
+            background: #24292e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .github-link:hover {
+            background: #1b1f23;
+        }
+        
+        .demo-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .demo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .demo-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .demo-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .kpi-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kpi-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .kpi-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .local-setup {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #007bff;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        .upload-demo {
+            border: 2px dashed #007bff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px 0;
+            background: #f8f9fa;
+        }
+        
+        .file-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 PM Intelligence Dashboard</h1>
+            <p class="subtitle">Production-grade file ingestion and analysis for project management</p>
+            <a href="https://github.com/yourusername/pm-intelligence-dashboard" class="github-link" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                View on GitHub
+            </a>
+        </div>
+        
+        <div class="demo-section">
+            <div class="demo-card">
+                <h3>📁 File Ingestion Demo</h3>
+                <p>Try the interactive file upload interface with simulated processing.</p>
+                <button class="demo-button" onclick="openFileDemo()">
+                    Launch File Upload Demo
+                </button>
+            </div>
+            
+            <div class="demo-card">
+                <h3>📊 Dashboard Preview</h3>
+                <p>View sample project analytics and KPI visualizations.</p>
+                <button class="demo-button" onclick="showDashboard()">
+                    View Sample Dashboard
+                </button>
+            </div>
+            
+            <div class="demo-card">
+                <h3>🔧 Local Setup</h3>
+                <p>Download and run the full Python application locally.</p>
+                <button class="demo-button" onclick="showSetupInstructions()">
+                    Setup Instructions
+                </button>
+            </div>
+        </div>
+        
+        <div id="dashboardSection" style="display: none;">
+            <h2>Sample Project Dashboard</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-number">12</div>
+                    <div class="kpi-label">Active Projects</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-number">5</div>
+                    <div class="kpi-label">At Risk Items</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-number">73%</div>
+                    <div class="kpi-label">Budget Utilized</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-number">85%</div>
+                    <div class="kpi-label">Team Velocity</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>🔒 Production-Grade Security</h4>
+                <p>Comprehensive file validation, error handling, and integrity checking.</p>
+            </div>
+            <div class="feature-card">
+                <h4>📈 Multi-Format Support</h4>
+                <p>Excel, CSV, JIRA JSON, PowerPoint with intelligent content analysis.</p>
+            </div>
+            <div class="feature-card">
+                <h4>🤖 AI-Powered Analysis</h4>
+                <p>Automated insights, risk detection, and project health assessment.</p>
+            </div>
+            <div class="feature-card">
+                <h4>📊 Executive Reporting</h4>
+                <p>Automated report generation with customizable templates.</p>
+            </div>
+        </div>
+        
+        <div class="local-setup">
+            <h3>🏠 Run Locally for Full Functionality</h3>
+            <p>This GitHub Pages demo shows the interface. For full file processing capabilities, run locally:</p>
+            <div class="code-block">
+git clone https://github.com/yourusername/pm-intelligence-dashboard.git
+cd pm-intelligence-dashboard
+pip install -r backend/requirements.txt
+python backend/pm_web_interface.py
+            </div>
+            <p>Then open <strong>http://localhost:8000</strong> for the complete application.</p>
+        </div>
+    </div>
+    
+    <!-- File Upload Demo Modal -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fileModal')">&times;</span>
+            <h2>File Upload Demo</h2>
+            <div class="upload-demo">
+                <h3>📁 Drag & Drop Demo Area</h3>
+                <p>In the full application, you can upload:</p>
+                <ul style="text-align: left; margin: 20px 0;">
+                    <li>Excel files (.xlsx, .xls) - Project plans, budgets</li>
+                    <li>CSV files - Tabular project data</li>
+                    <li>JSON files - JIRA exports, API data</li>
+                    <li>PowerPoint (.pptx) - Project presentations</li>
+                </ul>
+                <button class="demo-button" onclick="simulateUpload()">
+                    Simulate File Upload
+                </button>
+            </div>
+            <div id="uploadResults" style="display: none; margin-top: 20px;">
+                <h3>Processing Results (Simulated)</h3>
+                <div class="file-item">
+                    <div>
+                        <strong>project_plan.xlsx</strong><br>
+                        <small>Excel file - 2.3MB</small>
+                    </div>
+                    <span style="color: green;">✅ Processed</span>
+                </div>
+                <div class="file-item">
+                    <div>
+                        <strong>jira_export.json</strong><br>
+                        <small>JIRA data - 856KB</small>
+                    </div>
+                    <span style="color: green;">✅ Analyzed</span>
+                </div>
+                <p style="margin-top: 15px; padding: 15px; background: #d4edda; border-radius: 8px;">
+                    <strong>Demo Complete!</strong> In the full application, files would be processed using the production-grade Python engine.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Setup Instructions Modal -->
+    <div id="setupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('setupModal')">&times;</span>
+            <h2>Local Setup Instructions</h2>
+            
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Python 3.11+</li>
+                <li>Git</li>
+                <li>8GB+ RAM recommended</li>
+            </ul>
+            
+            <h3>Installation Steps</h3>
+            <div class="code-block">
+# 1. Clone the repository
+git clone https://github.com/yourusername/pm-intelligence-dashboard.git
+cd pm-intelligence-dashboard
+
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r backend/requirements.txt
+
+# 4. Run the application
+python backend/pm_web_interface.py
+            </div>
+            
+            <h3>Access the Application</h3>
+            <p>Open your browser to <strong>http://localhost:8000</strong></p>
+            
+            <h3>Features Available Locally</h3>
+            <ul>
+                <li>✅ Real file upload and processing</li>
+                <li>✅ Multi-agent analysis system</li>
+                <li>✅ Data persistence and export</li>
+                <li>✅ Full validation pipeline</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function openFileDemo() {
+            document.getElementById('fileModal').style.display = 'block';
+        }
+        
+        function showDashboard() {
+            const section = document.getElementById('dashboardSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function showSetupInstructions() {
+            document.getElementById('setupModal').style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        function simulateUpload() {
+            document.getElementById('uploadResults').style.display = 'block';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
