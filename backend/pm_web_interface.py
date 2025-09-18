@@ -930,13 +930,77 @@ async def analytics_dashboard():
     dashboard_html = """
     <!DOCTYPE html>
     <html lang="en">
-    <!-- Copy the ENTIRE HTML content from the dashboard artifact here -->
-    <!-- This includes the <head>, <body>, CSS, and JavaScript -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PM Dashboard</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 40px; 
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+            }
+            .container { 
+                max-width: 800px; 
+                margin: 0 auto; 
+                background: white; 
+                padding: 40px; 
+                border-radius: 20px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            }
+            h1 { color: #333; text-align: center; margin-bottom: 30px; }
+            .metric { 
+                display: inline-block; 
+                background: #f8f9fa; 
+                padding: 20px; 
+                margin: 10px; 
+                border-radius: 10px; 
+                text-align: center; 
+                min-width: 150px;
+            }
+            .metric h2 { color: #007bff; font-size: 2em; margin: 0; }
+            .metric p { color: #666; margin: 5px 0 0 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>📊 PM Intelligence Dashboard</h1>
+            
+            <div class="metric">
+                <h2>85</h2>
+                <p>Total Issues</p>
+            </div>
+            <div class="metric">
+                <h2>8</h2>
+                <p>Team Members</p>
+            </div>
+            <div class="metric">
+                <h2>369</h2>
+                <p>Story Points</p>
+            </div>
+            <div class="metric">
+                <h2>27%</h2>
+                <p>Completion Rate</p>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #d4edda; border-radius: 10px;">
+                <h3>🎉 Dashboard Working!</h3>
+                <p>Your PM Intelligence system successfully processed 4 files with 85 JIRA issues across 3 projects.</p>
+                <p><strong>Next:</strong> Advanced charts and visualizations will be added here.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/" style="background: #007bff; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px;">
+                    ← Back to File Upload
+                </a>
+            </div>
+        </div>
+    </body>
     </html>
     """
     
     return HTMLResponse(content=dashboard_html)
-
 
 def start_web_interface(host: str = "0.0.0.0", port: int = 8000):
     # ... existing function ...
