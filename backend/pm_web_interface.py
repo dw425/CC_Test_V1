@@ -28,7 +28,10 @@ import uvicorn
 
 # Import your file ingestion engine
 try:
-    from CC_file1 import FileIngestionEngine, ProcessingResult
+    import sys
+   import os
+   sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+   from CC_file1 import FileIngestionEngine, ProcessingResult
 except ImportError:
     print("Error: Could not import CC_file1.py")
     print("Make sure CC_file1.py is in the same directory as this file")
