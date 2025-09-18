@@ -919,6 +919,27 @@ async def validation_interface():
     """
     return HTMLResponse(content=html_content)
 
+@app.get("/dashboard", response_class=HTMLResponse)
+async def analytics_dashboard():
+    """
+    Serve the analytics dashboard with infographic visualizations.
+    
+    Returns:
+        Interactive dashboard with charts and insights using live data
+    """
+    dashboard_html = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <!-- Copy the ENTIRE HTML content from the dashboard artifact here -->
+    <!-- This includes the <head>, <body>, CSS, and JavaScript -->
+    </html>
+    """
+    
+    return HTMLResponse(content=dashboard_html)
+
+
+def start_web_interface(host: str = "0.0.0.0", port: int = 8000):
+    # ... existing function ...
 
 def start_web_interface(host: str = "0.0.0.0", port: int = 8000):
     """
