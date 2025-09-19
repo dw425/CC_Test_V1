@@ -412,7 +412,7 @@
                     <div class="upload-text">
                         <h3>Drop files here or click to browse</h3>
                         <p>Supports Excel (.xlsx, .xls), CSV, JSON, PowerPoint (.pptx), and text files</p>
-                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                        <button class="upload-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
                             Choose Files
                         </button>
                     </div>
@@ -499,21 +499,36 @@
             addFiles(files);
         });
 
-        dropZone.addEventListener('click', () => {
+        dropZone.addEventListener('click', (e) => {
+            // Prevent the click from bubbling up and triggering multiple times
+            e.stopPropagation();
             fileInput.click();
         });
 
         fileInput.addEventListener('change', (e) => {
             const files = Array.from(e.target.files);
-            addFiles(files);
+            if (files.length > 0) {
+                addFiles(files);
+                // Clear the input so the same file can be selected again if needed
+                e.target.value = '';
+            }
         });
 
         function addFiles(files) {
+            console.log(`Adding ${files.length} files:`, files.map(f => f.name));
+            
             files.forEach(file => {
-                if (!selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
+                // Check if file already exists
+                const existingFile = selectedFiles.find(f => f.name === file.name && f.size === file.size);
+                if (!existingFile) {
                     selectedFiles.push(file);
+                    console.log(`Added: ${file.name} (${formatFileSize(file.size)})`);
+                } else {
+                    console.log(`Skipped duplicate: ${file.name}`);
                 }
             });
+            
+            console.log(`Total selected files: ${selectedFiles.length}`);
             updateFileList();
         }
 
@@ -560,7 +575,10 @@
         }
 
         async function processFiles() {
-            if (selectedFiles.length === 0) return;
+            if (selectedFiles.length === 0) {
+                alert('Please select files first');
+                return;
+            }
 
             // Show progress
             document.getElementById('progressContainer').style.display = 'block';
@@ -568,8 +586,9 @@
             processBtn.textContent = 'Processing...';
 
             const formData = new FormData();
-            selectedFiles.forEach(file => {
+            selectedFiles.forEach((file, index) => {
                 formData.append('files', file);
+                console.log(`Added file ${index + 1}: ${file.name} (${file.size} bytes)`);
             });
 
             try {
@@ -581,6 +600,8 @@
                     updateProgress(progress);
                 }, 500);
 
+                console.log('Sending files to /upload-files endpoint...');
+                
                 const response = await fetch('/upload-files', {
                     method: 'POST',
                     body: formData
@@ -589,15 +610,21 @@
                 clearInterval(progressInterval);
                 updateProgress(100);
 
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+
                 if (response.ok) {
                     const result = await response.json();
+                    console.log('Processing result:', result);
                     showResults(result);
                 } else {
-                    throw new Error('Upload failed');
+                    const errorText = await response.text();
+                    console.error('Server error:', errorText);
+                    throw new Error(`Server error: ${response.status} - ${errorText}`);
                 }
             } catch (error) {
                 console.error('Error processing files:', error);
-                alert('Error processing files. Please try again.');
+                alert(`Error processing files: ${error.message}`);
                 resetProcessing();
             }
         }
