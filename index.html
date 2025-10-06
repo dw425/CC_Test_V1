@@ -73,8 +73,85 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
                     <p><strong>Company Name & Industry:</strong> SiriusXM, a leading audio entertainment company</p>
                     <p><strong>Size & Maturity:</strong> Approx. 5,500 employees, mature enterprise with established tech stacks</p>
-                    <p><strong>Core Business Problem:</strong> Needs to improve personalization and reduce churn in their streaming subscriber base.</p>
-                    <p><strong>Key Stakeholders:</strong> VP of Subscriber Analytics, Director of Engineering (Personalization), Senior Product Manager (Streaming App)</p>
+                    <p><strong>Core Business Problem:</strong> Legacy Teradata system is costly, difficult to scale, and hinders advanced analytics. Needs to migrate to Databricks to improve performance and reduce TCO.</p>
+                    <p><strong>Key Stakeholders:</strong> VP of Subscriber Analytics, Director of Data Engineering, Head of Infrastructure</p>
+                </div>
+            </div>
+
+            <div class="card p-6 mb-8">
+                <div class="flex flex-col">
+                    <label for="runbook_link" class="block text-xl font-bold text-gray-800 mb-2">Client Dev Runbook</label>
+                    <p class="text-sm text-gray-500 mb-3">Paste the link to the client's development runbook or technical documentation below.</p>
+                    <input type="url" name="runbook_link" id="runbook_link" placeholder="https://example.com/runbook" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+            </div>
+
+            <div class="card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Project Vitals & SOW Highlights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mt-4">
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">SOW Milestones</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>Phase 1:</strong> Discovery & Teradata System Assessment</li>
+                            <li><strong>Phase 2:</strong> Schema & Stored Procedure Conversion</li>
+                            <li><strong>Phase 3:</strong> Initial Data Load & Validation</li>
+                            <li><strong>Phase 4:</strong> Final Cutover & Teradata Decommission</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Key Metrics (KPIs)</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Reduce data infrastructure TCO by 20%</li>
+                            <li>Improve average query performance by 30%</li>
+                            <li>100% of production jobs migrated with parity</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Velocity Measurements</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>Target Velocity:</strong> 25 Story Points / Sprint</li>
+                            <li><strong>Sprint Duration:</strong> 2 Weeks</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Lakebridge / Analyzer Results</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li><strong>Stored Procedure Complexity:</strong> High (75% complex)</li>
+                            <li><strong>Total Data Volume:</strong> 150 TB</li>
+                            <li><strong>System Dependencies:</strong> 5 critical dependencies found</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Project Charter Summary</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mt-4 text-gray-700">
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-800 mb-2">Project Purpose</h3>
+                        <p>To modernize SiriusXM's data infrastructure by migrating existing analytics workloads, stored procedures, and content from legacy Teradata systems to Databricks to improve performance, scalability, and enable advanced analytics.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-800 mb-2">Objectives & Success Criteria</h3>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Migrate 100% of production stored procedures and ETL pipelines.</li>
+                            <li>Reduce average query execution time on key dashboards by 30%.</li>
+                            <li>Achieve functional parity with zero data loss post-migration.</li>
+                            <li>Decommission Teradata systems within 3 months of final cutover.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-800 mb-2">High-Level Scope</h3>
+                        <p><strong>In Scope:</strong> Migration of all Teradata tables, views, stored procedures, and associated ETL jobs. User training and dashboard reconnections.</p>
+                        <p class="mt-2"><strong>Out of Scope:</strong> Development of new AI/ML models, changes to upstream data sources, redesign of end-user dashboards.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-gray-800 mb-2">Project Sponsor</h3>
+                        <p>VP of Subscriber Analytics</p>
+                    </div>
                 </div>
             </div>
 
@@ -82,7 +159,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h2 class="text-2xl font-bold text-blue-800">Phase 0: Training & Readiness</h2>
-                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Ensure all team members have the foundational knowledge of our product, processes, and the customer's industry to engage confidently and effectively from day one.</p>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Ensure all team members have a thorough understanding of the specific project scope, customer objectives, and our internal processes to engage confidently and effectively from day one.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
                         <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
@@ -102,12 +179,15 @@
                 <div class="mt-6">
                     <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
                     <ul class="list-disc list-inside text-gray-600 space-y-2">
-                        <li class="action-item-li"><span>Conduct a skills gap analysis for each team against project requirements.</span><select name="phase0_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Align on and develop the formal upskilling plan and training curriculum.</span><select name="phase0_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Create or update training materials and playbooks for the new processes.</span><select name="phase0_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Establish a training calendar and assign facilitators for upskilling sessions.</span><select name="phase0_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Clarify and communicate roles within the new operational framework.</span><select name="phase0_action_item_5_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Set up a feedback mechanism for teams on training and new processes.</span><select name="phase0_action_item_6_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Review the SOW to align on deliverables, timelines, and exclusions.</span><select name="phase0_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Perform a readiness assessment to identify project risks and dependencies.</span><select name="phase0_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Develop a course of action to mitigate risks found in the assessment.</span><select name="phase0_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Conduct a skills gap analysis against Databricks & Scala/Python requirements.</span><select name="phase0_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Develop a formal upskilling plan based on the skills gap analysis.</span><select name="phase0_action_item_5_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Update training materials for Teradata-to-Databricks migration best practices.</span><select name="phase0_action_item_6_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Establish a training calendar and assign facilitators for upskilling sessions.</span><select name="phase0_action_item_7_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Clarify and communicate roles within the new operational framework.</span><select name="phase0_action_item_8_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Set up a feedback mechanism for teams on training and new processes.</span><select name="phase0_action_item_9_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                     </ul>
                 </div>
 
@@ -117,15 +197,15 @@
                         <div class="space-y-4">
                             <div>
                                 <label for="obs0" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
-                                <textarea id="obs0" name="phase0_observations" class="textarea-block" placeholder="How well does the team understand our processes and the customer's business? Where are the knowledge gaps?"></textarea>
+                                <textarea id="obs0" name="phase0_observations" class="textarea-block" placeholder="How well does the team understand the SOW? Were there any ambiguities or identified risks?"></textarea>
                             </div>
                              <div>
                                 <label for="notwork0" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
-                                <textarea id="notwork0" name="phase0_did_not_work" class="textarea-block" placeholder="Which parts of our training materials or playbooks are unclear, outdated, or missing?"></textarea>
+                                <textarea id="notwork0" name="phase0_did_not_work" class="textarea-block" placeholder="What gaps exist in our current readiness? Are our training materials sufficient for this project's scope?"></textarea>
                             </div>
                             <div>
                                 <label for="act0" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
-                                <textarea id="act0" name="phase0_action_items" class="textarea-block" placeholder="What training sessions need to be scheduled? What documentation needs to be created or updated?"></textarea>
+                                <textarea id="act0" name="phase0_action_items" class="textarea-block" placeholder="What specific training needs to be scheduled? Who is responsible for mitigating the identified risks?"></textarea>
                             </div>
                         </div>
                     </div>
@@ -133,12 +213,20 @@
                         <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 0: Scoring</h3>
                         <div class="space-y-3">
                             <div>
-                                <label for="kpi0-1" class="block text-sm font-medium text-gray-600">Team Product Knowledge</label>
-                                <select id="kpi0-1" name="phase0_score_product_knowledge" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                                <label for="kpi0-1" class="block text-sm font-medium text-gray-600">SOW & Scope Clarity</label>
+                                <select id="kpi0-1" name="phase0_score_sow_clarity" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
                             <div>
-                               <label for="kpi0-2" class="block text-sm font-medium text-gray-600">Process & Playbook Clarity</label>
-                                <select id="kpi0-2" name="phase0_score_process_clarity" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                               <label for="kpi0-2" class="block text-sm font-medium text-gray-600">Overall Team Readiness</label>
+                                <select id="kpi0-2" name="phase0_score_readiness_level" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi0-3" class="block text-sm font-medium text-gray-600">Risk Mitigation Plan Quality</label>
+                                <select id="kpi0-3" name="phase0_score_risk_plan" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                               <label for="kpi0-4" class="block text-sm font-medium text-gray-600">Role & Responsibility Clarity</label>
+                                <select id="kpi0-4" name="phase0_score_role_clarity" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
                         </div>
                     </div>
@@ -149,7 +237,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h2 class="text-2xl font-bold text-blue-800">Phase 1: Project Kick-off & Discovery</h2>
-                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Align all internal and customer stakeholders on the project plan, timeline, and detailed requirements, ensuring a shared understanding of scope and a solid foundation for the project.</p>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Achieve full alignment with internal and customer stakeholders on the project plan, timeline, and detailed requirements, establishing a solid foundation for the project.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
                         <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
@@ -169,9 +257,9 @@
                 <div class="mt-6">
                     <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
                     <ul class="list-disc list-inside text-gray-600 space-y-2">
-                        <li class="action-item-li"><span>Assign roles and role-play the internal and customer kick-off calls.</span><select name="phase1_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Simulate the internal pre-kickoff and customer kick-off meetings.</span><select name="phase1_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                         <li class="action-item-li"><span>Draft a high-level project plan on a whiteboard or document.</span><select name="phase1_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                        <li class="action-item-li"><span>Collaboratively list the technical questions you would ask the "customer".</span><select name="phase1_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Collaboratively list technical questions for the Teradata migration.</span><select name="phase1_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                         <li class="action-item-li"><span>Discuss and define the communication plan and meeting cadence.</span><select name="phase1_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                     </ul>
                 </div>
@@ -198,12 +286,20 @@
                         <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 1: Scoring</h3>
                         <div class="space-y-3">
                             <div>
-                                <label for="kpi1-1" class="block text-sm font-medium text-gray-600">Time to Requirements Sign-off</label>
+                                <label for="kpi1-1" class="block text-sm font-medium text-gray-600">Time to Migration Plan Sign-off</label>
                                 <select id="kpi1-1" name="phase1_score_signoff_time" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
                             <div>
-                               <label for="kpi1-2" class="block text-sm font-medium text-gray-600">Initial Customer Satisfaction (CSAT)</label>
+                               <label for="kpi1-2" class="block text-sm font-medium text-gray-600">Initial Customer Satisfaction</label>
                                 <select id="kpi1-2" name="phase1_score_csat" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi1-3" class="block text-sm font-medium text-gray-600">Project Plan Thoroughness</label>
+                                <select id="kpi1-3" name="phase1_score_plan_quality" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                               <label for="kpi1-4" class="block text-sm font-medium text-gray-600">Stakeholder Alignment</label>
+                                <select id="kpi1-4" name="phase1_score_alignment" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
                         </div>
                     </div>
@@ -238,6 +334,7 @@
                         <li class="action-item-li"><span>Team: Discuss and role-play the response for the change request.</span><select name="phase2_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                         <li class="action-item-li"><span>Facilitator: Introduce a major technical blocker (e.g., customer API isn't working).</span><select name="phase2_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                         <li class="action-item-li"><span>Team: Walk through the internal and external escalation path for the blocker.</span><select name="phase2_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Draft a mock weekly status update for the customer.</span><select name="phase2_action_item_5_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
                     </ul>
                 </div>
 
@@ -270,6 +367,14 @@
                                 <label for="kpi2-2" class="block text-sm font-medium text-gray-600">Bug Density (Internal QA)</label>
                                 <select id="kpi2-2" name="phase2_score_bug_density" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
+                            <div>
+                                <label for="kpi2-3" class="block text-sm font-medium text-gray-600">Change Request Management</label>
+                                <select id="kpi2-3" name="phase2_score_change_mgmt" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi2-4" class="block text-sm font-medium text-gray-600">Blocker Resolution Efficiency</label>
+                                <select id="kpi2-4" name="phase2_score_blocker_res" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -279,7 +384,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h2 class="text-2xl font-bold text-blue-800">Phase 3: UAT, Go-Live & Handoff</h2>
-                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Ensure the solution is thoroughly validated by the customer and deployed smoothly into production, followed by a clean, comprehensive transition to the Customer Success and Support teams for long-term customer success.</p>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Successfully guide the solution through customer validation and deploy smoothly into production, followed by a clean transition to the long-term success and support teams.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
                         <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
@@ -335,6 +440,14 @@
                                 <label for="kpi3-2" class="block text-sm font-medium text-gray-600">Go-Live Success</label>
                                 <select id="kpi3-2" name="phase3_score_go_live_success" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
                             </div>
+                             <div>
+                                <label for="kpi3-3" class="block text-sm font-medium text-gray-600">Customer UAT Engagement</label>
+                                <select id="kpi3-3" name="phase3_score_uat_engagement" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi3-4" class="block text-sm font-medium text-gray-600">Handoff Documentation Quality</label>
+                                <select id="kpi3-4" name="phase3_score_handoff_docs" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -378,7 +491,10 @@
     <div id="thankYouModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
       <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
         <div class="mt-3 text-center">
-          <h3 class="text-lg leading-6 font-medium text-gray-900">Thank You!</h3>
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+            <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">Thank You!</h3>
           <div class="mt-2 px-7 py-3">
             <p class="text-sm text-gray-500">
               Your simulation results have been submitted.
@@ -386,7 +502,7 @@
           </div>
           <div class="items-center px-4 py-3">
             <button id="clearScreenBtn" class="px-4 py-2 bg-blue-700 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              Clear Screen
+              Clear Screen & Start Over
             </button>
           </div>
         </div>
