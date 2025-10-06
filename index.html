@@ -13,7 +13,7 @@
             font-family: 'Inter', sans-serif;
         }
         .blueprint-header {
-            background-color: #1E3A8A; /* Dark Blue */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient from previous design */
         }
         .card {
             background-color: white;
@@ -61,242 +61,258 @@
 
     <header class="blueprint-header text-white p-6 shadow-md">
         <div class="container mx-auto">
-            <h1 class="text-3xl font-bold">Customer Journey Simulation Blueprint</h1>
+            <h1 class="text-3xl font-bold">Customer Journey Simulation</h1>
             <p class="mt-1 text-blue-200">An interactive exercise to refine our customer engagement process.</p>
         </div>
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-
-        <!-- Setup Section -->
-        <div class="card p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Setup: The Hypothetical Customer</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-                <p><strong>Company Name & Industry:</strong> Innovate Corp, a mid-size SaaS company</p>
-                <p><strong>Size & Maturity:</strong> 500 employees, technically proficient but resource-constrained</p>
-                <p><strong>Core Business Problem:</strong> Needs to automate their manual customer onboarding data entry process.</p>
-                <p><strong>Key Stakeholders:</strong> Head of Operations, a technical lead, a project manager</p>
-            </div>
-        </div>
-
-        <!-- Phase 1 -->
-        <div class="card p-6 mb-8">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h2 class="text-2xl font-bold text-blue-800">Phase 1: Project Kick-off & Discovery</h2>
-                    <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Align all internal and customer stakeholders on the project plan, timeline, and detailed requirements, ensuring a shared understanding of scope and a solid foundation for the project.</p>
+        <form action="https://formspree.io/f/manpbzor" method="POST">
+            <!-- Setup Section -->
+            <div class="card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Setup: The Hypothetical Customer</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                    <p><strong>Company Name & Industry:</strong> SiriusXM, a leading audio entertainment company</p>
+                    <p><strong>Size & Maturity:</strong> Approx. 5,500 employees, mature enterprise with established tech stacks</p>
+                    <p><strong>Core Business Problem:</strong> Needs to improve personalization and reduce churn in their streaming subscriber base.</p>
+                    <p><strong>Key Stakeholders:</strong> VP of Subscriber Analytics, Director of Engineering (Personalization), Senior Product Manager (Streaming App)</p>
                 </div>
-                <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
-                    <div class="grid grid-cols-2 gap-x-4">
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Ryan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Gary</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Melissa</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Heather</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Erin</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Sy</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Dan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Suzy</label>
+            </div>
+
+            <!-- Phase 1 -->
+            <div class="card p-6 mb-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-800">Phase 1: Project Kick-off & Discovery</h2>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Align all internal and customer stakeholders on the project plan, timeline, and detailed requirements, ensuring a shared understanding of scope and a solid foundation for the project.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
+                        <div class="grid grid-cols-2 gap-x-4">
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Ryan" class="checkbox-input"> Ryan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Gary" class="checkbox-input"> Gary</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Melissa" class="checkbox-input"> Melissa</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Heather" class="checkbox-input"> Heather</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Erin" class="checkbox-input"> Erin</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Sy" class="checkbox-input"> Sy</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Dan" class="checkbox-input"> Dan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase1_contributors[]" value="Suzy" class="checkbox-input"> Suzy</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li class="action-item-li"><span>Assign roles and role-play the internal and customer kick-off calls.</span><select name="phase1_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Draft a high-level project plan on a whiteboard or document.</span><select name="phase1_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Collaboratively list the technical questions you would ask the "customer".</span><select name="phase1_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Discuss and define the communication plan and meeting cadence.</span><select name="phase1_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
+                    <div class="lg:col-span-3">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 1: Notes & Feedback</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="obs1" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
+                                <textarea id="obs1" name="phase1_observations" class="textarea-block" placeholder="What happened during the simulation? What went well?"></textarea>
+                            </div>
+                             <div>
+                                <label for="notwork1" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
+                                <textarea id="notwork1" name="phase1_did_not_work" class="textarea-block" placeholder="What was challenging, ambiguous, or created friction?"></textarea>
+                            </div>
+                            <div>
+                                <label for="act1" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
+                                <textarea id="act1" name="phase1_action_items" class="textarea-block" placeholder="What specific process improvements can we make? Assign owners and deadlines."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 1: Scoring</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label for="kpi1-1" class="block text-sm font-medium text-gray-600">Time to Requirements Sign-off</label>
+                                <select id="kpi1-1" name="phase1_score_signoff_time" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                               <label for="kpi1-2" class="block text-sm font-medium text-gray-600">Initial Customer Satisfaction (CSAT)</label>
+                                <select id="kpi1-2" name="phase1_score_csat" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-6">
-                <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
-                <ul class="list-disc list-inside text-gray-600 space-y-2">
-                    <li class="action-item-li"><span>Assign roles and role-play the internal and customer kick-off calls.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Draft a high-level project plan on a whiteboard or document.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Collaboratively list the technical questions you would ask the "customer".</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Discuss and define the communication plan and meeting cadence.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                </ul>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
-                <div class="lg:col-span-3">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 1: Notes & Feedback</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label for="obs1" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
-                            <textarea id="obs1" class="textarea-block" placeholder="What happened during the simulation? What went well?"></textarea>
-                        </div>
-                         <div>
-                            <label for="notwork1" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
-                            <textarea id="notwork1" class="textarea-block" placeholder="What was challenging, ambiguous, or created friction?"></textarea>
-                        </div>
-                        <div>
-                            <label for="act1" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
-                            <textarea id="act1" class="textarea-block" placeholder="What specific process improvements can we make? Assign owners and deadlines."></textarea>
+            <!-- Phase 2 -->
+            <div class="card p-6 mb-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-800">Phase 2: Implementation & Build</h2>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Execute the project plan efficiently, manage change effectively, and maintain clear, proactive communication to keep the project on track and stakeholders informed.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
+                         <div class="grid grid-cols-2 gap-x-4">
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Ryan" class="checkbox-input"> Ryan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Gary" class="checkbox-input"> Gary</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Melissa" class="checkbox-input"> Melissa</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Heather" class="checkbox-input"> Heather</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Erin" class="checkbox-input"> Erin</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Sy" class="checkbox-input"> Sy</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Dan" class="checkbox-input"> Dan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase2_contributors[]" value="Suzy" class="checkbox-input"> Suzy</label>
                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 1: Scoring</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <label for="kpi1-1" class="block text-sm font-medium text-gray-600">Time to Requirements Sign-off</label>
-                            <select id="kpi1-1" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
-                        </div>
-                        <div>
-                           <label for="kpi1-2" class="block text-sm font-medium text-gray-600">Initial Customer Satisfaction (CSAT)</label>
-                            <select id="kpi1-2" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+
+                 <div class="mt-6">
+                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li class="action-item-li"><span>Facilitator: Present a "small" out-of-scope change request from the customer.</span><select name="phase2_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Team: Discuss and role-play the response for the change request.</span><select name="phase2_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Facilitator: Introduce a major technical blocker (e.g., customer API isn't working).</span><select name="phase2_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Team: Walk through the internal and external escalation path for the blocker.</span><select name="phase2_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
+                    <div class="lg:col-span-3">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 2: Notes & Feedback</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="obs2" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
+                                <textarea id="obs2" name="phase2_observations" class="textarea-block" placeholder="How did the team handle the scenarios? What went well?"></textarea>
+                            </div>
+                            <div>
+                                <label for="notwork2" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
+                                <textarea id="notwork2" name="phase2_did_not_work" class="textarea-block" placeholder="Were our processes for change and risk management clear? Where were the gaps?"></textarea>
+                            </div>
+                            <div>
+                                <label for="act2" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
+                                <textarea id="act2" name="phase2_action_items" class="textarea-block" placeholder="What needs to be clarified in our playbook for handling scope creep or technical issues?"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Phase 2 -->
-        <div class="card p-6 mb-8">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h2 class="text-2xl font-bold text-blue-800">Phase 2: Implementation & Build</h2>
-                    <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Execute the project plan efficiently, manage change effectively, and maintain clear, proactive communication to keep the project on track and stakeholders informed.</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
-                     <div class="grid grid-cols-2 gap-x-4">
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Ryan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Gary</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Melissa</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Heather</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Erin</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Sy</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Dan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Suzy</label>
-                    </div>
-                </div>
-            </div>
-
-             <div class="mt-6">
-                <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
-                <ul class="list-disc list-inside text-gray-600 space-y-2">
-                    <li class="action-item-li"><span>Facilitator: Present a "small" out-of-scope change request from the customer.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Team: Discuss and role-play the response for the change request.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Facilitator: Introduce a major technical blocker (e.g., customer API isn't working).</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Team: Walk through the internal and external escalation path for the blocker.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                </ul>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
-                <div class="lg:col-span-3">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 2: Notes & Feedback</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label for="obs2" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
-                            <textarea id="obs2" class="textarea-block" placeholder="How did the team handle the scenarios? What went well?"></textarea>
-                        </div>
-                        <div>
-                            <label for="notwork2" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
-                            <textarea id="notwork2" class="textarea-block" placeholder="Were our processes for change and risk management clear? Where were the gaps?"></textarea>
-                        </div>
-                        <div>
-                            <label for="act2" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
-                            <textarea id="act2" class="textarea-block" placeholder="What needs to be clarified in our playbook for handling scope creep or technical issues?"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 2: Scoring</h3>
-                    <div class="space-y-3">
-                        <div>
-                           <label for="kpi2-1" class="block text-sm font-medium text-gray-600">Schedule Adherence</label>
-                            <select id="kpi2-1" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
-                        </div>
-                        <div>
-                            <label for="kpi2-2" class="block text-sm font-medium text-gray-600">Bug Density (Internal QA)</label>
-                            <select id="kpi2-2" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                    <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 2: Scoring</h3>
+                        <div class="space-y-3">
+                            <div>
+                               <label for="kpi2-1" class="block text-sm font-medium text-gray-600">Schedule Adherence</label>
+                                <select id="kpi2-1" name="phase2_score_schedule_adherence" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi2-2" class="block text-sm font-medium text-gray-600">Bug Density (Internal QA)</label>
+                                <select id="kpi2-2" name="phase2_score_bug_density" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Phase 3 -->
-        <div class="card p-6 mb-8">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h2 class="text-2xl font-bold text-blue-800">Phase 3: UAT, Go-Live & Handoff</h2>
-                    <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Ensure the solution is thoroughly validated by the customer and deployed smoothly into production, followed by a clean, comprehensive transition to the Customer Success and Support teams for long-term customer success.</p>
+            <!-- Phase 3 -->
+            <div class="card p-6 mb-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-2xl font-bold text-blue-800">Phase 3: UAT, Go-Live & Handoff</h2>
+                        <p class="text-gray-600 mt-1 max-w-2xl"><strong>Goal:</strong> Ensure the solution is thoroughly validated by the customer and deployed smoothly into production, followed by a clean, comprehensive transition to the Customer Success and Support teams for long-term customer success.</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
+                         <div class="grid grid-cols-2 gap-x-4">
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Ryan" class="checkbox-input"> Ryan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Gary" class="checkbox-input"> Gary</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Melissa" class="checkbox-input"> Melissa</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Heather" class="checkbox-input"> Heather</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Erin" class="checkbox-input"> Erin</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Sy" class="checkbox-input"> Sy</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Dan" class="checkbox-input"> Dan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="phase3_contributors[]" value="Suzy" class="checkbox-input"> Suzy</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-50 p-4 rounded-lg border ml-4 flex-shrink-0">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Owner & Contributors</h3>
-                     <div class="grid grid-cols-2 gap-x-4">
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Ryan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Gary</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Melissa</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Heather</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Erin</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Sy</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Dan</label>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Suzy</label>
+                
+                <div class="mt-6">
+                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li class="action-item-li"><span>Review a mock list of UAT feedback (bugs vs. enhancements).</span><select name="phase3_action_item_1_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Role-play the conversation to prioritize feedback for go-live.</span><select name="phase3_action_item_2_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Walk through the go-live deployment checklist step-by-step.</span><select name="phase3_action_item_3_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                        <li class="action-item-li"><span>Draft the formal handoff email and documentation for CS & Support.</span><select name="phase3_action_item_4_owner" class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
+                    <div class="lg:col-span-3">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 3: Notes & Feedback</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="obs3" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
+                                <textarea id="obs3" name="phase3_observations" class="textarea-block" placeholder="What went well in the final stages of the project?"></textarea>
+                            </div>
+                            <div>
+                                <label for="notwork3" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
+                                <textarea id="notwork3" name="phase3_did_not_work" class="textarea-block" placeholder="What gaps were identified in our UAT, deployment, or handoff processes?"></textarea>
+                            </div>
+                            <div>
+                                <label for="act3" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
+                                <textarea id="act3" name="phase3_action_items" class="textarea-block" placeholder="How can we improve our checklists, training materials, or internal handoff procedures?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
+                        <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 3: Scoring</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label for="kpi3-1" class="block text-sm font-medium text-gray-600">UAT Defect Rate</label>
+                                <select id="kpi3-1" name="phase3_score_uat_defect_rate" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                            <div>
+                                <label for="kpi3-2" class="block text-sm font-medium text-gray-600">Go-Live Success</label>
+                                <select id="kpi3-2" name="phase3_score_go_live_success" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="mt-6">
-                <h3 class="font-semibold text-lg text-gray-700 mb-2">Simulation Action Items</h3>
-                <ul class="list-disc list-inside text-gray-600 space-y-2">
-                    <li class="action-item-li"><span>Review a mock list of UAT feedback (bugs vs. enhancements).</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Role-play the conversation to prioritize feedback for go-live.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Walk through the go-live deployment checklist step-by-step.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                    <li class="action-item-li"><span>Draft the formal handoff email and documentation for CS & Support.</span><select class="select-block"><option>Assign Owner</option><option>Ryan</option><option>Gary</option><option>Melissa</option><option>Heather</option><option>Erin</option><option>Sy</option><option>Dan</option><option>Suzy</option></select></li>
-                </ul>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-6 pt-6 border-t">
-                <div class="lg:col-span-3">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Phase 3: Notes & Feedback</h3>
-                    <div class="space-y-4">
+            <!-- Debrief -->
+            <div class="card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">4. Overall Debrief & Action Items</h2>
+                 <div class="mt-4">
+                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Discussion Prompts</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <li>What were the biggest friction points or recurring issues we identified across all phases?</li>
+                        <li>Where did our inter-departmental communication and handoffs break down or excel?</li>
+                        <li>What is the single most impactful thing we can change in our process to improve the customer experience?</li>
+                    </ul>
+                </div>
+                 <div class="mt-6">
+                     <label for="act4" class="block text-sm font-medium text-gray-600 mb-1">Consolidated Action Items:</label>
+                     <textarea id="act4" name="debrief_consolidated_actions" class="textarea-block" rows="6" placeholder="Review all action items from the previous phases, consolidate them, and confirm owners and deadlines."></textarea>
+                 </div>
+                 <div class="mt-6 border-t pt-6">
+                    <h3 class="font-semibold text-lg text-gray-700 mb-2">Submit Your Simulation</h3>
+                    <p class="text-gray-600 mb-4">Enter your name and email to finalize and submit the results of this simulation.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label for="obs3" class="block text-sm font-medium text-gray-600 mb-1">Observations:</label>
-                            <textarea id="obs3" class="textarea-block" placeholder="What went well in the final stages of the project?"></textarea>
+                             <label for="submitter_name" class="block text-sm font-medium text-gray-600 mb-1">Your Name</label>
+                             <input type="text" name="submitter_name" id="submitter_name" required class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                         <div>
-                            <label for="notwork3" class="block text-sm font-medium text-gray-600 mb-1">What Didn't Work:</label>
-                            <textarea id="notwork3" class="textarea-block" placeholder="What gaps were identified in our UAT, deployment, or handoff processes?"></textarea>
-                        </div>
-                        <div>
-                            <label for="act3" class="block text-sm font-medium text-gray-600 mb-1">Action Items:</label>
-                            <textarea id="act3" class="textarea-block" placeholder="How can we improve our checklists, training materials, or internal handoff procedures?"></textarea>
+                             <label for="submitter_email" class="block text-sm font-medium text-gray-600 mb-1">Your Email</label>
+                             <input type="email" name="submitter_email" id="submitter_email" required class="w-full p-2 border border-gray-300 rounded-md">
                         </div>
                     </div>
-                </div>
-                <div class="lg:col-span-2 bg-gray-50 p-4 rounded-lg border">
-                    <h3 class="font-semibold text-lg text-gray-700 mb-3">Phase 3: Scoring</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <label for="kpi3-1" class="block text-sm font-medium text-gray-600">UAT Defect Rate</label>
-                            <select id="kpi3-1" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
-                        </div>
-                        <div>
-                            <label for="kpi3-2" class="block text-sm font-medium text-gray-600">Go-Live Success</label>
-                            <select id="kpi3-2" class="select-block w-full"><option>Select Level (1-4)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="w-full mt-4 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out">
+                        Submit
+                    </button>
+                 </div>
             </div>
-        </div>
-        
-        <!-- Debrief -->
-        <div class="card p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-800">4. Overall Debrief & Action Items</h2>
-             <div class="mt-4">
-                <h3 class="font-semibold text-lg text-gray-700 mb-2">Discussion Prompts</h3>
-                <ul class="list-disc list-inside text-gray-600 space-y-1">
-                    <li>What were the biggest friction points or recurring issues we identified across all phases?</li>
-                    <li>Where did our inter-departmental communication and handoffs break down or excel?</li>
-                    <li>What is the single most impactful thing we can change in our process to improve the customer experience?</li>
-                </ul>
-            </div>
-             <div class="mt-6">
-                 <label for="act4" class="block text-sm font-medium text-gray-600 mb-1">Consolidated Action Items:</label>
-                 <textarea id="act4" class="textarea-block" rows="6" placeholder="Review all action items from the previous phases, consolidate them, and confirm owners and deadlines."></textarea>
-             </div>
-        </div>
-
+        </form>
     </main>
 
 </body>
 </html>
-
 
