@@ -175,52 +175,6 @@
             color: #4facfe;
         }
         
-        /* Handoff Arrows Section */
-        .handoffs-section {
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .handoffs-section h2 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #4facfe;
-        }
-        
-        .handoff-flow {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .handoff-item {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .handoff-box {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .handoff-arrow {
-            font-size: 2rem;
-            color: #4facfe;
-        }
-        
-        .handoff-label {
-            font-size: 0.85rem;
-            color: #8892b0;
-        }
-        
         /* Governance Section */
         .governance-section {
             margin-top: 30px;
@@ -278,52 +232,6 @@
             gap: 8px;
             font-size: 0.85rem;
         }
-        
-        /* Alignment Matrix */
-        .alignment-section {
-            margin-top: 40px;
-        }
-        
-        .alignment-section h2 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: #4facfe;
-        }
-        
-        .alignment-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-        
-        .alignment-table th {
-            background: rgba(255,255,255,0.1);
-            padding: 12px;
-            text-align: left;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .alignment-table td {
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            vertical-align: top;
-        }
-        
-        .alignment-table tr:nth-child(even) {
-            background: rgba(255,255,255,0.02);
-        }
-        
-        .dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        
-        .dot.primary { background: #00b894; }
-        .dot.secondary { background: #0984e3; }
-        .dot.support { background: #6c5ce7; }
         
         @media (max-width: 1200px) {
             .phase-row, .org-row {
@@ -512,35 +420,6 @@
             </div>
         </div>
         
-        <div class="handoffs-section">
-            <h2>🔄 Key Phase Transitions & Handoffs</h2>
-            <div class="handoff-flow">
-                <div class="handoff-item">
-                    <div class="handoff-box">
-                        <strong>PLAN → BUILD</strong><br>
-                        <small>Approved Backlog<br>Architecture Blueprint<br>Resource Commitment</small>
-                    </div>
-                    <div class="handoff-label">Prod Strategy owns "What"<br>Delivery owns "How"</div>
-                </div>
-                <div class="handoff-arrow">➜</div>
-                <div class="handoff-item">
-                    <div class="handoff-box">
-                        <strong>BUILD → RUN</strong><br>
-                        <small>Release Package<br>Runbooks & Docs<br>SLA Definitions</small>
-                    </div>
-                    <div class="handoff-label">Delivery owns "Completion"<br>Tech Sol. owns "Stability"</div>
-                </div>
-                <div class="handoff-arrow">➜</div>
-                <div class="handoff-item">
-                    <div class="handoff-box">
-                        <strong>RUN → PLAN</strong><br>
-                        <small>Performance Data<br>Incident Insights<br>Enhancement Requests</small>
-                    </div>
-                    <div class="handoff-label">Feedback Loop<br>Continuous Improvement</div>
-                </div>
-            </div>
-        </div>
-        
         <div class="governance-section">
             <div class="governance-card plan">
                 <h3>📋 Plan Governance</h3>
@@ -572,72 +451,6 @@
                     <li><strong>Chair:</strong> CTO / VP Engineering</li>
                 </ul>
             </div>
-        </div>
-        
-        <div class="alignment-section">
-            <h2>📊 Ownership & Alignment Matrix</h2>
-            <table class="alignment-table">
-                <thead>
-                    <tr>
-                        <th>Facet</th>
-                        <th>Primary Owner</th>
-                        <th>Plan Phase</th>
-                        <th>Build Phase</th>
-                        <th>Run Phase</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Business Value</strong></td>
-                        <td>Product Strategy</td>
-                        <td><span class="dot primary"></span>Define & Measure</td>
-                        <td><span class="dot secondary"></span>Validate</td>
-                        <td><span class="dot support"></span>Report</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Delivery Velocity</strong></td>
-                        <td>Client Delivery</td>
-                        <td><span class="dot secondary"></span>Estimate</td>
-                        <td><span class="dot primary"></span>Execute & Track</td>
-                        <td><span class="dot support"></span>Support</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Technical Quality</strong></td>
-                        <td>Tech Solutions</td>
-                        <td><span class="dot secondary"></span>Standards</td>
-                        <td><span class="dot secondary"></span>Review & Guide</td>
-                        <td><span class="dot primary"></span>Enforce & Monitor</td>
-                    </tr>
-                    <tr>
-                        <td><strong>User Experience</strong></td>
-                        <td>Product Strategy</td>
-                        <td><span class="dot primary"></span>Design</td>
-                        <td><span class="dot secondary"></span>Test & Iterate</td>
-                        <td><span class="dot support"></span>Feedback</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Security & Compliance</strong></td>
-                        <td>Tech Solutions</td>
-                        <td><span class="dot secondary"></span>Requirements</td>
-                        <td><span class="dot secondary"></span>Implementation</td>
-                        <td><span class="dot primary"></span>Audit & Respond</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cost Management</strong></td>
-                        <td>Shared</td>
-                        <td><span class="dot primary"></span>Budget</td>
-                        <td><span class="dot secondary"></span>Track</td>
-                        <td><span class="dot primary"></span>Optimize</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Risk Management</strong></td>
-                        <td>Shared</td>
-                        <td><span class="dot primary"></span>Identify</td>
-                        <td><span class="dot primary"></span>Mitigate</td>
-                        <td><span class="dot primary"></span>Monitor</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
         
         <div style="margin-top: 40px; padding: 20px; background: rgba(79, 172, 254, 0.1); border-radius: 12px; border-left: 4px solid #4facfe;">
