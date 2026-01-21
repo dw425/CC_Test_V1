@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM Intelligence Dashboard - Demo</title>
+    <title>Plan-Build-Run Process Map | Organizational Alignment</title>
     <style>
         * {
             margin: 0;
@@ -12,420 +12,644 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px;
+            color: #e8e8e8;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
         }
         
         h1 {
-            color: #333;
-            font-size: 2.5em;
+            text-align: center;
+            font-size: 2.2rem;
             margin-bottom: 10px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .subtitle {
-            color: #666;
-            font-size: 1.1em;
+            text-align: center;
+            color: #8892b0;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Phase Headers */
+        .phase-row {
+            display: grid;
+            grid-template-columns: 180px 1fr 1fr 1fr;
+            gap: 15px;
             margin-bottom: 20px;
         }
         
-        .github-link {
-            background: #24292e;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
+        .phase-header {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .phase-plan { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .phase-build { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .phase-run { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        
+        .phase-desc {
+            font-size: 0.75rem;
+            font-weight: 400;
+            margin-top: 5px;
+            opacity: 0.9;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        
+        .corner-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #8892b0;
+        }
+        
+        /* Organization Rows */
+        .org-row {
+            display: grid;
+            grid-template-columns: 180px 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .org-label {
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .org-label .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .org-label .name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        
+        .org-label .role {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .org-product { background: linear-gradient(135deg, #2d3436, #636e72); border-left: 4px solid #fdcb6e; }
+        .org-delivery { background: linear-gradient(135deg, #2d3436, #636e72); border-left: 4px solid #74b9ff; }
+        .org-technology { background: linear-gradient(135deg, #2d3436, #636e72); border-left: 4px solid #a29bfe; }
+        
+        /* Activity Cells */
+        .activity-cell {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .activity-cell:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .ownership-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .owner { background: #00b894; color: #fff; }
+        .contributor { background: #0984e3; color: #fff; }
+        .consulted { background: #6c5ce7; color: #fff; }
+        .informed { background: #636e72; color: #fff; }
+        
+        .activity-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .activity-list {
+            list-style: none;
+            font-size: 0.8rem;
+            color: #b8c5d6;
+        }
+        
+        .activity-list li {
+            padding: 4px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .activity-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4facfe;
+        }
+        
+        /* Handoff Arrows Section */
+        .handoffs-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .handoffs-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #4facfe;
+        }
+        
+        .handoff-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .handoff-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .handoff-box {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .handoff-arrow {
+            font-size: 2rem;
+            color: #4facfe;
+        }
+        
+        .handoff-label {
+            font-size: 0.85rem;
+            color: #8892b0;
+        }
+        
+        /* Governance Section */
+        .governance-section {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .governance-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .governance-card h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        .github-link:hover {
-            background: #1b1f23;
+        .governance-card.plan h3 { color: #a29bfe; }
+        .governance-card.build h3 { color: #fd79a8; }
+        .governance-card.run h3 { color: #00cec9; }
+        
+        .governance-list {
+            list-style: none;
+            font-size: 0.8rem;
+            color: #b8c5d6;
         }
         
-        .demo-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+        .governance-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .demo-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        .governance-list li:last-child {
+            border-bottom: none;
         }
         
-        .demo-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .demo-card h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-        
-        .demo-button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            width: 100%;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .demo-button:hover {
-            background: #0056b3;
-            transform: translateY(-2px);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #007bff;
-        }
-        
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .kpi-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .kpi-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        
-        .kpi-label {
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .local-setup {
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border-left: 5px solid #007bff;
-        }
-        
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            overflow-x: auto;
-            margin: 15px 0;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            color: black;
-        }
-        
-        .upload-demo {
-            border: 2px dashed #007bff;
-            padding: 40px;
-            text-align: center;
-            border-radius: 10px;
-            margin: 20px 0;
-            background: #f8f9fa;
-        }
-        
-        .file-item {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
+        /* RACI Legend */
+        .legend {
+            margin-top: 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
             align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        /* Alignment Matrix */
+        .alignment-section {
+            margin-top: 40px;
+        }
+        
+        .alignment-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #4facfe;
+        }
+        
+        .alignment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .alignment-table th {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .alignment-table td {
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            vertical-align: top;
+        }
+        
+        .alignment-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .dot.primary { background: #00b894; }
+        .dot.secondary { background: #0984e3; }
+        .dot.support { background: #6c5ce7; }
+        
+        @media (max-width: 1200px) {
+            .phase-row, .org-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .corner-label {
+                display: none;
+            }
+            
+            .governance-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🚀 PM Intelligence Dashboard</h1>
-            <p class="subtitle">Production-grade file ingestion and analysis for project management</p>
-            <a href="https://github.com/yourusername/pm-intelligence-dashboard" class="github-link" target="_blank">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-                View on GitHub
-            </a>
-        </div>
+        <h1>Plan-Build-Run Operating Model</h1>
+        <p class="subtitle">Organizational Alignment & Ownership Framework</p>
         
-        <div class="demo-section">
-            <div class="demo-card">
-                <h3>📁 File Ingestion Demo</h3>
-                <p>Try the interactive file upload interface with simulated processing.</p>
-                <button class="demo-button" onclick="openFileDemo()">
-                    Launch File Upload Demo
-                </button>
+        <div class="phase-row">
+            <div class="corner-label">ORGANIZATION ↓ &nbsp; PHASE →</div>
+            <div class="phase-header phase-plan">
+                Plan
+                <div class="phase-desc">Strategy & Definition</div>
             </div>
-            
-            <div class="demo-card">
-                <h3>📊 Dashboard Preview</h3>
-                <p>View sample project analytics and KPI visualizations.</p>
-                <button class="demo-button" onclick="showDashboard()">
-                    View Sample Dashboard
-                </button>
+            <div class="phase-header phase-build">
+                Build
+                <div class="phase-desc">Development & Creation</div>
             </div>
-            
-            <div class="demo-card">
-                <h3>🔧 Local Setup</h3>
-                <p>Download and run the full Python application locally.</p>
-                <button class="demo-button" onclick="showSetupInstructions()">
-                    Setup Instructions
-                </button>
+            <div class="phase-header phase-run">
+                Run
+                <div class="phase-desc">Operations & Optimization</div>
             </div>
         </div>
         
-        <div id="dashboardSection" style="display: none;">
-            <h2>Sample Project Dashboard</h2>
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-number">12</div>
-                    <div class="kpi-label">Active Projects</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number">5</div>
-                    <div class="kpi-label">At Risk Items</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number">73%</div>
-                    <div class="kpi-label">Budget Utilized</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number">85%</div>
-                    <div class="kpi-label">Team Velocity</div>
-                </div>
+        <div class="org-row">
+            <div class="org-label org-product">
+                <div class="icon">📦</div>
+                <div class="name">Product Strategy</div>
+                <div class="role">What & Why</div>
             </div>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <h4>🔒 Production-Grade Security</h4>
-                <p>Comprehensive file validation, error handling, and integrity checking.</p>
-            </div>
-            <div class="feature-card">
-                <h4>📈 Multi-Format Support</h4>
-                <p>Excel, CSV, JIRA JSON, PowerPoint with intelligent content analysis.</p>
-            </div>
-            <div class="feature-card">
-                <h4>🤖 AI-Powered Analysis</h4>
-                <p>Automated insights, risk detection, and project health assessment.</p>
-            </div>
-            <div class="feature-card">
-                <h4>📊 Executive Reporting</h4>
-                <p>Automated report generation with customizable templates.</p>
-            </div>
-        </div>
-        
-        <div class="local-setup">
-            <h3>🏠 Run Locally for Full Functionality</h3>
-            <p>This GitHub Pages demo shows the interface. For full file processing capabilities, run locally:</p>
-            <div class="code-block">
-git clone https://github.com/yourusername/pm-intelligence-dashboard.git
-cd pm-intelligence-dashboard
-pip install -r backend/requirements.txt
-python backend/pm_web_interface.py
-            </div>
-            <p>Then open <strong>http://localhost:8000</strong> for the complete application.</p>
-        </div>
-    </div>
-    
-    <!-- File Upload Demo Modal -->
-    <div id="fileModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('fileModal')">&times;</span>
-            <h2>File Upload Demo</h2>
-            <div class="upload-demo">
-                <h3>📁 Drag & Drop Demo Area</h3>
-                <p>In the full application, you can upload:</p>
-                <ul style="text-align: left; margin: 20px 0;">
-                    <li>Excel files (.xlsx, .xls) - Project plans, budgets</li>
-                    <li>CSV files - Tabular project data</li>
-                    <li>JSON files - JIRA exports, API data</li>
-                    <li>PowerPoint (.pptx) - Project presentations</li>
+            <div class="activity-cell">
+                <span class="ownership-badge owner">Owner</span>
+                <div class="activity-title">Product Strategy & Roadmap</div>
+                <ul class="activity-list">
+                    <li>Define product vision & goals</li>
+                    <li>Prioritize features & capabilities</li>
+                    <li>Conduct market research</li>
+                    <li>Create business cases & ROI</li>
+                    <li>Define success metrics & KPIs</li>
+                    <li>Stakeholder alignment</li>
                 </ul>
-                <button class="demo-button" onclick="simulateUpload()">
-                    Simulate File Upload
-                </button>
             </div>
-            <div id="uploadResults" style="display: none; margin-top: 20px;">
-                <h3>Processing Results (Simulated)</h3>
-                <div class="file-item">
-                    <div>
-                        <strong>project_plan.xlsx</strong><br>
-                        <small>Excel file - 2.3MB</small>
-                    </div>
-                    <span style="color: green;">✅ Processed</span>
-                </div>
-                <div class="file-item">
-                    <div>
-                        <strong>jira_export.json</strong><br>
-                        <small>JIRA data - 856KB</small>
-                    </div>
-                    <span style="color: green;">✅ Analyzed</span>
-                </div>
-                <p style="margin-top: 15px; padding: 15px; background: #d4edda; border-radius: 8px;">
-                    <strong>Demo Complete!</strong> In the full application, files would be processed using the production-grade Python engine.
-                </p>
+            <div class="activity-cell">
+                <span class="ownership-badge contributor">Contributor</span>
+                <div class="activity-title">Requirements & Validation</div>
+                <ul class="activity-list">
+                    <li>Define acceptance criteria</li>
+                    <li>User story refinement</li>
+                    <li>UAT coordination</li>
+                    <li>Beta program management</li>
+                    <li>Feature prioritization calls</li>
+                    <li>Go/No-go decisions</li>
+                </ul>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge consulted">Consulted</span>
+                <div class="activity-title">Product Performance</div>
+                <ul class="activity-list">
+                    <li>Monitor adoption metrics</li>
+                    <li>Gather user feedback</li>
+                    <li>Identify enhancement needs</li>
+                    <li>Competitive analysis</li>
+                    <li>Roadmap adjustments</li>
+                    <li>Sunset planning</li>
+                </ul>
             </div>
         </div>
-    </div>
-    
-    <!-- Setup Instructions Modal -->
-    <div id="setupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('setupModal')">&times;</span>
-            <h2>Local Setup Instructions</h2>
-            
-            <h3>Prerequisites</h3>
-            <ul>
-                <li>Python 3.11+</li>
-                <li>Git</li>
-                <li>8GB+ RAM recommended</li>
-            </ul>
-            
-            <h3>Installation Steps</h3>
-            <div class="code-block">
-# 1. Clone the repository
-git clone https://github.com/yourusername/pm-intelligence-dashboard.git
-cd pm-intelligence-dashboard
-
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r backend/requirements.txt
-
-# 4. Run the application
-python backend/pm_web_interface.py
+        
+        <div class="org-row">
+            <div class="org-label org-delivery">
+                <div class="icon">🚀</div>
+                <div class="name">Client Delivery</div>
+                <div class="role">How & When</div>
             </div>
-            
-            <h3>Access the Application</h3>
-            <p>Open your browser to <strong>http://localhost:8000</strong></p>
-            
-            <h3>Features Available Locally</h3>
-            <ul>
-                <li>✅ Real file upload and processing</li>
-                <li>✅ Multi-agent analysis system</li>
-                <li>✅ Data persistence and export</li>
-                <li>✅ Full validation pipeline</li>
-            </ul>
+            <div class="activity-cell">
+                <span class="ownership-badge contributor">Contributor</span>
+                <div class="activity-title">Delivery Planning</div>
+                <ul class="activity-list">
+                    <li>Capacity planning</li>
+                    <li>Release planning</li>
+                    <li>Risk assessment</li>
+                    <li>Dependency mapping</li>
+                    <li>Resource allocation</li>
+                    <li>Timeline estimation</li>
+                </ul>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge owner">Owner</span>
+                <div class="activity-title">Execution & Delivery</div>
+                <ul class="activity-list">
+                    <li>Sprint/iteration management</li>
+                    <li>Development coordination</li>
+                    <li>Quality assurance</li>
+                    <li>Integration testing</li>
+                    <li>Release management</li>
+                    <li>Team performance</li>
+                </ul>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge contributor">Contributor</span>
+                <div class="activity-title">Continuous Improvement</div>
+                <ul class="activity-list">
+                    <li>Defect resolution</li>
+                    <li>Hot fixes & patches</li>
+                    <li>Process optimization</li>
+                    <li>Retrospectives</li>
+                    <li>Knowledge transfer</li>
+                    <li>Documentation</li>
+                </ul>
+            </div>
         </div>
+        
+        <div class="org-row">
+            <div class="org-label org-technology">
+                <div class="icon">⚙️</div>
+                <div class="name">Technical Solutions</div>
+                <div class="role">Where & Standards</div>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge contributor">Contributor</span>
+                <div class="activity-title">Architecture & Standards</div>
+                <ul class="activity-list">
+                    <li>Technical feasibility</li>
+                    <li>Architecture design</li>
+                    <li>Technology selection</li>
+                    <li>Security requirements</li>
+                    <li>Compliance planning</li>
+                    <li>Cost modeling</li>
+                </ul>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge contributor">Contributor</span>
+                <div class="activity-title">Platform & Enablement</div>
+                <ul class="activity-list">
+                    <li>Infrastructure provisioning</li>
+                    <li>CI/CD pipeline support</li>
+                    <li>Environment management</li>
+                    <li>Security implementation</li>
+                    <li>Performance engineering</li>
+                    <li>Technical debt mgmt</li>
+                </ul>
+            </div>
+            <div class="activity-cell">
+                <span class="ownership-badge owner">Owner</span>
+                <div class="activity-title">Operations & Reliability</div>
+                <ul class="activity-list">
+                    <li>Production support</li>
+                    <li>Monitoring & alerting</li>
+                    <li>Incident management</li>
+                    <li>Capacity management</li>
+                    <li>Disaster recovery</li>
+                    <li>SLA management</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="ownership-badge owner">Owner</span>
+                <span>Accountable & Decision Maker</span>
+            </div>
+            <div class="legend-item">
+                <span class="ownership-badge contributor">Contributor</span>
+                <span>Active Participant</span>
+            </div>
+            <div class="legend-item">
+                <span class="ownership-badge consulted">Consulted</span>
+                <span>Provides Input</span>
+            </div>
+            <div class="legend-item">
+                <span class="ownership-badge informed">Informed</span>
+                <span>Kept Updated</span>
+            </div>
+        </div>
+        
+        <div class="handoffs-section">
+            <h2>🔄 Key Phase Transitions & Handoffs</h2>
+            <div class="handoff-flow">
+                <div class="handoff-item">
+                    <div class="handoff-box">
+                        <strong>PLAN → BUILD</strong><br>
+                        <small>Approved Backlog<br>Architecture Blueprint<br>Resource Commitment</small>
+                    </div>
+                    <div class="handoff-label">Prod Strategy owns "What"<br>Delivery owns "How"</div>
+                </div>
+                <div class="handoff-arrow">➜</div>
+                <div class="handoff-item">
+                    <div class="handoff-box">
+                        <strong>BUILD → RUN</strong><br>
+                        <small>Release Package<br>Runbooks & Docs<br>SLA Definitions</small>
+                    </div>
+                    <div class="handoff-label">Delivery owns "Completion"<br>Tech Sol. owns "Stability"</div>
+                </div>
+                <div class="handoff-arrow">➜</div>
+                <div class="handoff-item">
+                    <div class="handoff-box">
+                        <strong>RUN → PLAN</strong><br>
+                        <small>Performance Data<br>Incident Insights<br>Enhancement Requests</small>
+                    </div>
+                    <div class="handoff-label">Feedback Loop<br>Continuous Improvement</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="governance-section">
+            <div class="governance-card plan">
+                <h3>📋 Plan Governance</h3>
+                <ul class="governance-list">
+                    <li><strong>Cadence:</strong> Quarterly planning cycles</li>
+                    <li><strong>Forum:</strong> Product Council</li>
+                    <li><strong>Artifacts:</strong> Roadmap, Business Cases</li>
+                    <li><strong>Decisions:</strong> Priority, Investment, Scope</li>
+                    <li><strong>Chair:</strong> Chief Product Officer</li>
+                </ul>
+            </div>
+            <div class="governance-card build">
+                <h3>🔨 Build Governance</h3>
+                <ul class="governance-list">
+                    <li><strong>Cadence:</strong> Sprint/PI boundaries</li>
+                    <li><strong>Forum:</strong> Delivery Review Board</li>
+                    <li><strong>Artifacts:</strong> Sprint Reviews, Release Notes</li>
+                    <li><strong>Decisions:</strong> Go-live, Scope changes</li>
+                    <li><strong>Chair:</strong> Delivery Director</li>
+                </ul>
+            </div>
+            <div class="governance-card run">
+                <h3>🖥️ Run Governance</h3>
+                <ul class="governance-list">
+                    <li><strong>Cadence:</strong> Weekly ops reviews</li>
+                    <li><strong>Forum:</strong> Operations Council</li>
+                    <li><strong>Artifacts:</strong> SLA Reports, Incident Reviews</li>
+                    <li><strong>Decisions:</strong> Change approval, Escalations</li>
+                    <li><strong>Chair:</strong> CTO / VP Engineering</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="alignment-section">
+            <h2>📊 Ownership & Alignment Matrix</h2>
+            <table class="alignment-table">
+                <thead>
+                    <tr>
+                        <th>Facet</th>
+                        <th>Primary Owner</th>
+                        <th>Plan Phase</th>
+                        <th>Build Phase</th>
+                        <th>Run Phase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Business Value</strong></td>
+                        <td>Product Strategy</td>
+                        <td><span class="dot primary"></span>Define & Measure</td>
+                        <td><span class="dot secondary"></span>Validate</td>
+                        <td><span class="dot support"></span>Report</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Delivery Velocity</strong></td>
+                        <td>Client Delivery</td>
+                        <td><span class="dot secondary"></span>Estimate</td>
+                        <td><span class="dot primary"></span>Execute & Track</td>
+                        <td><span class="dot support"></span>Support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Quality</strong></td>
+                        <td>Tech Solutions</td>
+                        <td><span class="dot secondary"></span>Standards</td>
+                        <td><span class="dot secondary"></span>Review & Guide</td>
+                        <td><span class="dot primary"></span>Enforce & Monitor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Experience</strong></td>
+                        <td>Product Strategy</td>
+                        <td><span class="dot primary"></span>Design</td>
+                        <td><span class="dot secondary"></span>Test & Iterate</td>
+                        <td><span class="dot support"></span>Feedback</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security & Compliance</strong></td>
+                        <td>Tech Solutions</td>
+                        <td><span class="dot secondary"></span>Requirements</td>
+                        <td><span class="dot secondary"></span>Implementation</td>
+                        <td><span class="dot primary"></span>Audit & Respond</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Management</strong></td>
+                        <td>Shared</td>
+                        <td><span class="dot primary"></span>Budget</td>
+                        <td><span class="dot secondary"></span>Track</td>
+                        <td><span class="dot primary"></span>Optimize</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risk Management</strong></td>
+                        <td>Shared</td>
+                        <td><span class="dot primary"></span>Identify</td>
+                        <td><span class="dot primary"></span>Mitigate</td>
+                        <td><span class="dot primary"></span>Monitor</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 20px; background: rgba(79, 172, 254, 0.1); border-radius: 12px; border-left: 4px solid #4facfe;">
+            <h3 style="color: #4facfe; margin-bottom: 10px;">💡 Key Alignment Principles</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; font-size: 0.9rem; color: #b8c5d6;">
+                <div><strong>Product Strategy</strong> defines the "what" and "why" — owns the vision, priorities, and business outcomes</div>
+                <div><strong>Client Delivery</strong> defines the "how" and "when" — owns execution, quality, and timelines</div>
+                <div><strong>Technical Solutions</strong> defines the "where" and "how well" — owns infrastructure, standards, and reliability</div>
+                <div><strong>All Three</strong> share accountability for outcomes — success requires tight collaboration at every phase</div>
+            </div>
+        </div>
+        
     </div>
-    
-    <script>
-        function openFileDemo() {
-            document.getElementById('fileModal').style.display = 'block';
-        }
-        
-        function showDashboard() {
-            const section = document.getElementById('dashboardSection');
-            section.style.display = section.style.display === 'none' ? 'block' : 'none';
-        }
-        
-        function showSetupInstructions() {
-            document.getElementById('setupModal').style.display = 'block';
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-        
-        function simulateUpload() {
-            document.getElementById('uploadResults').style.display = 'block';
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
