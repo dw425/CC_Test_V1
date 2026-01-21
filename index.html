@@ -175,48 +175,6 @@
             color: #4facfe;
         }
         
-        /* Governance Section */
-        .governance-section {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        
-        .governance-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .governance-card h3 {
-            font-size: 1rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .governance-card.plan h3 { color: #a29bfe; }
-        .governance-card.build h3 { color: #fd79a8; }
-        .governance-card.run h3 { color: #00cec9; }
-        
-        .governance-list {
-            list-style: none;
-            font-size: 0.8rem;
-            color: #b8c5d6;
-        }
-        
-        .governance-list li {
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .governance-list li:last-child {
-            border-bottom: none;
-        }
-        
         /* RACI Legend */
         .legend {
             margin-top: 30px;
@@ -240,10 +198,6 @@
             
             .corner-label {
                 display: none;
-            }
-            
-            .governance-section {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -417,39 +371,6 @@
             <div class="legend-item">
                 <span class="ownership-badge informed">Informed</span>
                 <span>Kept Updated</span>
-            </div>
-        </div>
-        
-        <div class="governance-section">
-            <div class="governance-card plan">
-                <h3>📋 Plan Governance</h3>
-                <ul class="governance-list">
-                    <li><strong>Cadence:</strong> Quarterly planning cycles</li>
-                    <li><strong>Forum:</strong> Product Council</li>
-                    <li><strong>Artifacts:</strong> Roadmap, Business Cases</li>
-                    <li><strong>Decisions:</strong> Priority, Investment, Scope</li>
-                    <li><strong>Chair:</strong> Chief Product Officer</li>
-                </ul>
-            </div>
-            <div class="governance-card build">
-                <h3>🔨 Build Governance</h3>
-                <ul class="governance-list">
-                    <li><strong>Cadence:</strong> Sprint/PI boundaries</li>
-                    <li><strong>Forum:</strong> Delivery Review Board</li>
-                    <li><strong>Artifacts:</strong> Sprint Reviews, Release Notes</li>
-                    <li><strong>Decisions:</strong> Go-live, Scope changes</li>
-                    <li><strong>Chair:</strong> Delivery Director</li>
-                </ul>
-            </div>
-            <div class="governance-card run">
-                <h3>🖥️ Run Governance</h3>
-                <ul class="governance-list">
-                    <li><strong>Cadence:</strong> Weekly ops reviews</li>
-                    <li><strong>Forum:</strong> Operations Council</li>
-                    <li><strong>Artifacts:</strong> SLA Reports, Incident Reviews</li>
-                    <li><strong>Decisions:</strong> Change approval, Escalations</li>
-                    <li><strong>Chair:</strong> CTO / VP Engineering</li>
-                </ul>
             </div>
         </div>
         
